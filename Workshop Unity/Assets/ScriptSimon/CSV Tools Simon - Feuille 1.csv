@@ -1,0 +1,7 @@
+#;Name;Intitulé FR;Intitulé EN;Min;Max
+0;Killing Spree;Tuer $number ennemies;Kill $number enemies;20;40
+1;Survival;Survivez $number secondes;Survive $number seconds;10;30
+2;Killing Spree;Tuer $number ennemies;Kill $number enemies;25;45
+3;Survival;Survivez $number secondes;Survive $number seconds;15;35
+4;Killing Spree;Tuer $number ennemies;Kill $number enemies;15;35
+5;Survival;Survivez $number secondes;Survive $number seconds;2;5
