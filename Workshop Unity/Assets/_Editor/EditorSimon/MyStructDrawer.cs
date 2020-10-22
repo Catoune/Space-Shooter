@@ -49,4 +49,6 @@ public class MyStructDrawer : PropertyDrawer
 
         EditorGUI.PropertyField(spawnRect , spawnProp);
     }
+
+    //Struct
 }
