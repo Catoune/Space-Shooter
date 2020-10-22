@@ -13,7 +13,6 @@ public class MySecondHeavyInspector : Editor
     SerializedProperty myStrings;
     SerializedProperty myEnnemyProfile;
 
-
     private void OnEnable()
     {
         myColorProperty = serializedObject.FindProperty(nameof(MySecondGameplayScript.myColor));

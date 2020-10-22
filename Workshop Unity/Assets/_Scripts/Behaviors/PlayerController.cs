@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     float speed = 6f;
     bool justPressed = false;
 
-    public float delay = 0.5f;
+    public float delay = 0.1f;
 
     private void Update()
     {
