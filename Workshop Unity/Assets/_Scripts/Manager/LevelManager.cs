@@ -5,4 +5,16 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+
+    public Transform EditorCreationTab;
+
+    private void Awake()
+    {
+        Init();
+    }
+
+    public virtual void Init()
+    {
+        instance = this;
+    }
 }

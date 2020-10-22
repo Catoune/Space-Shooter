@@ -10,19 +10,17 @@ public class LevelEditorInspector : Editor
 {
     LevelEditor currentProfile;
 
-    SerializedProperty valuesDoubleTab;
-    SerializedProperty stringName;
-    SerializedProperty line;
-    SerializedProperty column;
-    public Color[,] colorList = new Color[9,9];
+    public Color[,] colorList = new Color[LevelEditor.lineNumber, LevelEditor.columnsNumber];
+
+    public string name;
 
     private void OnEnable()
     {
-        stringName = serializedObject.FindProperty(nameof(LevelEditor.name));
-        
-        for(int i = 0; i < LevelEditor.columnsNumber; i++)
+        currentProfile = (target as LevelEditor);
+
+        for (int i = 0; i < LevelEditor.lineNumber; i++)
         {
-            for (int j = 0; j < LevelEditor.lineNumber; j++)
+            for (int j = 0; j < LevelEditor.columnsNumber; j++)
             {
                 colorList[i,j] = Color.red;
             }
@@ -39,13 +37,13 @@ public class LevelEditorInspector : Editor
         //GUIStyle buttonsMenu = new GUIStyle("MeTimeLabel");
 
         Color oldColor = GUI.color;
-        Event cur = Event.current;
-        GUI.color = Color.red;
+        //Event cur = Event.current;
+        //GUI.color = Color.red;
 
-        for (int i = 0; i < LevelEditor.columnsNumber; i++)
+        for (int i = LevelEditor.lineNumber-1; i >= 0; i--)
         {
             EditorGUILayout.BeginHorizontal();
-            for (int j = 0; j < LevelEditor.lineNumber; j++)
+            for (int j = 0; j < LevelEditor.columnsNumber; j++)
             {
                 GUI.color = colorList[i, j];
                 
@@ -54,12 +52,12 @@ public class LevelEditorInspector : Editor
                         if (colorList[i, j] == Color.red)
                         {
                             colorList[i, j] = Color.green;
-                            (target as LevelEditor).SetArrayElement(i, j);
+                            currentProfile.SetArrayElement(i, j);
                         }
                         else
                         {
                             colorList[i, j] = Color.red;
-                            (target as LevelEditor).RemoveArrayElement(i, j);
+                            currentProfile.RemoveArrayElement(i, j);
                         }
                     }
                 
@@ -67,12 +65,26 @@ public class LevelEditorInspector : Editor
             EditorGUILayout.EndHorizontal();
         }
 
+        EditorGUILayout.BeginHorizontal();
         GUI.color = oldColor;
 
-        if (GUILayout.Button("Genererate Level"))
-        {
+        name = EditorGUILayout.TextField("Level Name:", name);
 
+        GUI.enabled = false;
+        if (name != null)
+        {
+            if (name.Length > 0)
+            {
+                GUI.enabled = true;
+            }
         }
+
+        if (GUILayout.Button("Save this level"))
+        {
+            currentProfile.SaveThisLevel(name);
+        }
+
+        EditorGUILayout.EndHorizontal();
     }
 
     static bool IsMouseOver()
