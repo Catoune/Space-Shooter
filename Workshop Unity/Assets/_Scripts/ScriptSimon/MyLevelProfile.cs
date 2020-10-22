@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Level Profil.asset", menuName = "Alex/New Level File", order = 7)]
+[CreateAssetMenu(fileName = "New Level Profil.asset", menuName = "Simon-Lessons/New Level File Example", order = 8)]
 public class MyLevelProfile : ScriptableObject
 {
     public float difficulty;
