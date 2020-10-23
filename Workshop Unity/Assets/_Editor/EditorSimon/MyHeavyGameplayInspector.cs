@@ -40,7 +40,7 @@ public class MyHeavyGameplayInspector : Editor
         int oldIndent = EditorGUI.indentLevel;
         //EditorGUI.indentLevel += 2;                                                                 //Espace avant "Ma couleur"
         float oldLabelWidth = EditorGUIUtility.labelWidth;
-        EditorGUIUtility.labelWidth *= .5f;                                                            //Espace entre "Ma couleur" et la Color.barre
+        EditorGUIUtility.labelWidth *= .5f;                                                           //Espace entre "Ma couleur" et la Color.barre
         myTargetScript.color = EditorGUILayout.ColorField("Ma couleur", myTargetScript.color);
         EditorGUI.indentLevel = oldIndent;
         #endregion

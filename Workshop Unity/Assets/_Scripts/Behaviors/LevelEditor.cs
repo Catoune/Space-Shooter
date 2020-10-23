@@ -40,8 +40,14 @@ public class LevelEditor : ScriptableObject
             }
         }
 
-        string localPath = "Assets/Prefab/Levels/" + level.name + ".prefab";
+        level.AddComponent<ObstacleBehavior>();
+
+        string localPath = "Assets/Resources/Prefab/Levels/" + level.name + ".prefab";
         localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
         PrefabUtility.SaveAsPrefabAssetAndConnect(level, localPath, InteractionMode.UserAction);
+
+        ObstacleManager.SaveInObstacleList(name);
+
+        DestroyImmediate(level);
     }
 }

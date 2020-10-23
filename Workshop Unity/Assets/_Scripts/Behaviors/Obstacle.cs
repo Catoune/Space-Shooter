@@ -5,12 +5,15 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public bool isUse = true;
-    public float speed = 4f;
 
     private void Update()
     {
-        transform.Translate(-Vector3.forward * speed * Time.deltaTime);
+        if(transform.position.z <= -1f)
+        {
+            ObstacleManager.instance.DesactivateThisObstacle(gameObject);
+        }
     }
+
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -21,4 +24,6 @@ public class Obstacle : MonoBehaviour
             isUse = false;
         }
     }
+
+    
 }

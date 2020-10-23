@@ -5,7 +5,12 @@ using UnityEngine;
 public class ShootManager : MonoBehaviour
 {
     public static ShootManager instance;
-    public ShootBehaviour[] shootList;                //Recup dans l'éditeur
+    public List<ShootBehaviour> shootList = new List<ShootBehaviour>();                //Recup dans l'éditeur
+    public Transform shootPrepared;
+
+#if UNITY_EDITOR
+    public bool foldoutState;
+#endif
 
     private void Awake()
     {
@@ -38,5 +43,53 @@ public class ShootManager : MonoBehaviour
         sb.gameObject.active = false;
         sb.transform.position = Vector3.zero;
         sb.isUse = false;
+    }
+
+    public void GenerateProjectile(int i)
+    {
+        if(i > shootList.Count)
+        {
+            int nbToInstantiate = i - shootList.Count;
+            AddProjectile(nbToInstantiate);
+        }
+        else if(i < shootList.Count)
+        {
+            int nbToInstantiate = shootList.Count - i;
+            RemoveProjectile(Mathf.Abs(nbToInstantiate));
+        }
+    }
+
+    public int GetNbProjectile()
+    {
+        return shootList.Count;
+    }
+
+    public void AddProjectile(int i)
+    {
+        for(int j = 0; j < i; j++)
+        {
+            GameObject go = Instantiate(Resources.Load("Prefab/Projectile", typeof(GameObject)), shootPrepared.transform) as GameObject;
+            shootList.Add(go.GetComponent<ShootBehaviour>());
+        }
+    }
+
+    public void RemoveProjectile(int i)
+    {
+        Debug.Log(i);
+        for (int j = 0; j < i; j++)
+        {
+            GameObject goToDelete = shootList[0].gameObject;
+            shootList.Remove(shootList[0]);
+            DestroyImmediate(goToDelete);
+        }
+    }
+
+    public void ChangeSpeed(float speedVoulu)
+    {
+        Debug.Log(speedVoulu);
+        foreach(ShootBehaviour sb in shootList)
+        {
+            sb.speed = speedVoulu;
+        }
     }
 }

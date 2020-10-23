@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
 
     public Transform EditorCreationTab;
 
+    public List<GameObject> listLevel;
+
     private void Awake()
     {
         Init();
