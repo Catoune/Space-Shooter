@@ -66,14 +66,14 @@ public class ObstacleManager : MonoBehaviour
     {
         GameObject go = Instantiate(Resources.Load("Prefab/Levels/" + obsName, typeof(GameObject)), Object.FindObjectOfType<ObstacleParent>().transform) as GameObject;
         staticObstacleList.Add(go.GetComponent<ObstacleBehavior>());
-        GameObject go1 = Instantiate(Resources.Load("Prefab/Levels/" + obsName, typeof(GameObject)), Object.FindObjectOfType<ObstacleParent>().transform) as GameObject;
+        /*GameObject go1 = Instantiate(Resources.Load("Prefab/Levels/" + obsName, typeof(GameObject)), Object.FindObjectOfType<ObstacleParent>().transform) as GameObject;
         staticObstacleList.Add(go1.GetComponent<ObstacleBehavior>());
         GameObject go2 = Instantiate(Resources.Load("Prefab/Levels/" + obsName, typeof(GameObject)), Object.FindObjectOfType<ObstacleParent>().transform) as GameObject;
-        staticObstacleList.Add(go2.GetComponent<ObstacleBehavior>());
+        staticObstacleList.Add(go2.GetComponent<ObstacleBehavior>());*/
 
         go.SetActive(false);
-        go1.SetActive(false);
-        go2.SetActive(false);
+        /*go1.SetActive(false);
+        go2.SetActive(false);*/
     }
 
     public void SetList()

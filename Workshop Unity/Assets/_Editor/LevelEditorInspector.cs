@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 public class LevelEditorInspector : Editor
 {
     LevelEditor currentProfile;
+    SerializedProperty srzdColor;
 
     public Color[,] colorList = new Color[LevelEditor.lineNumber, LevelEditor.columnsNumber];
 
@@ -17,6 +18,7 @@ public class LevelEditorInspector : Editor
     private void OnEnable()
     {
         currentProfile = (target as LevelEditor);
+        srzdColor = serializedObject.FindProperty(nameof(LevelEditor.colorObstacle));
 
         for (int i = 0; i < LevelEditor.lineNumber; i++)
         {
@@ -39,6 +41,9 @@ public class LevelEditorInspector : Editor
         Color oldColor = GUI.color;
         //Event cur = Event.current;
         //GUI.color = Color.red;
+
+        EditorGUILayout.PropertyField(srzdColor);
+        currentProfile.colorObstacle = srzdColor.colorValue;
 
         for (int i = LevelEditor.lineNumber-1; i >= 0; i--)
         {
